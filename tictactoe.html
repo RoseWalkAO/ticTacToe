@@ -1,0 +1,278 @@
+<!doctype html>
+	<head>
+    	<meta name="viewport" content="width=device-width">
+    	<title>Tic Tac Toe</title>
+		<meta charset="utf-8">
+		<style>
+			body {
+				background-color: orange;
+				font-family: calibri;
+			}
+			.grid-container {
+				padding-left: 15%;
+				display: inline-grid;
+				grid-template-columns: auto auto auto;
+				}
+			.grid-item {
+				display: flex;
+				background-color: cornflowerblue;
+				border: 1px solid rgba(0, 0, 0, 0.8);
+				font-size: 150px;
+				text-align: center;
+				margin: auto;
+				height: 200px;
+				width: 200px;
+				align-items: center;
+        		justify-content: center;
+				pointer-events: none;
+				cursor:pointer;
+  			}
+			.info {
+				float:left;
+				padding:0;
+			}
+			#player{
+				font-size: 150px;
+				position:fixed;
+			}
+		</style>
+	</head>
+	<header>
+		<h1>Tic tac toe</h1>
+	</header>
+	<body>
+		<main>
+			<button onclick="start()">Play a new game</button><br>
+			<div class="info"></div><br>
+			<div class="info" id="player"></div>
+			<div class="grid-container">
+				<div onclick = grid1();newTurn();checkWinner() class="grid-item" id="one">T</div>
+				<div onclick = grid2();newTurn();checkWinner() class="grid-item" id="two">I</div>
+				<div onclick = grid3();newTurn();checkWinner() class="grid-item" id="three">C</div>  
+				<div onclick = grid4();newTurn();checkWinner() class="grid-item" id="four">T</div>
+				<div onclick = grid5();newTurn();checkWinner() class="grid-item" id="five">A</div>
+				<div onclick = grid6();newTurn();checkWinner() class="grid-item" id="six">C</div>  
+				<div onclick = grid7();newTurn();checkWinner() class="grid-item" id="seven">T</div>
+				<div onclick = grid8();newTurn();checkWinner() class="grid-item" id="eight">O</div>
+				<div onclick = grid9();newTurn();checkWinner() class="grid-item" id="nine">E</div>  
+			  </div>
+
+			  <script>
+				var sq1; var sq2; var sq3; var sq4; var sq5; var sq6; var sq7; var sq8; var sq9;
+
+				function start(){
+					starter = Math.random()
+					console.log(starter)
+					if (starter > 0.5) {
+						player = 'X'
+					} else
+						player = 'O'
+					for (i=0; i<9; i++){
+						document.getElementsByClassName(`grid-item`)[i].innerHTML="";
+						document.getElementsByClassName(`grid-item`)[i].style.pointerEvents = "all";
+						document.getElementsByClassName(`grid-item`)[i].style.backgroundColor = "cornflowerblue";
+					}
+					document.getElementById(`player`).innerHTML=player;
+					document.getElementsByClassName(`info`)[0].innerHTML='Current player:';
+
+					sq1 = 0
+					sq2 = 0
+					sq3 = 0
+					sq4 = 0
+					sq5 = 0
+					sq6 = 0
+					sq7 = 0
+					sq8 = 0
+					sq9 = 0
+				}
+
+				function newTurn() {
+					if (player === 'X') {
+						player = 'O'
+					} else {
+						player = 'X'
+					}
+					document.getElementById(`player`).innerHTML=player;
+				}
+
+				function grid1(){
+					document.getElementById("one").innerHTML = player;
+					document.getElementById("one").style.pointerEvents = 'none';
+					if (player === 'X') {
+						sq1 = sq1 + 1;
+					} else {
+						sq1 = sq1 + 10;
+					}
+				}
+				function grid2(){
+					document.getElementById("two").innerHTML = player;
+					document.getElementById("two").style.pointerEvents = 'none';
+					if (player === 'X') {
+						sq2 = sq2 + 1;
+					} else {
+						sq2 = sq2 + 10;
+					}
+				}
+				function grid3(){
+					document.getElementById("three").innerHTML = player;
+					document.getElementById("three").style.pointerEvents = 'none';
+					if (player === 'X') {
+						sq3 = sq3 + 1;
+					} else {
+						sq3 = sq3 + 10;
+					}
+				}
+				function grid4(){
+					document.getElementById("four").innerHTML = player;
+					document.getElementById("four").style.pointerEvents = 'none';
+					if (player === 'X') {
+						sq4 = sq4 + 1;
+					} else {
+						sq4 = sq4 + 10;
+					}
+				}
+				function grid5(){
+					document.getElementById("five").innerHTML = player;
+					document.getElementById("five").style.pointerEvents = 'none';
+					if (player === 'X') {
+						sq5 = sq5 + 1;
+					} else {
+						sq5 = sq5 + 10;
+					}
+				}
+				function grid6(){
+					document.getElementById("six").innerHTML = player;
+					document.getElementById("six").style.pointerEvents = 'none';
+					if (player === 'X') {
+						sq6 = sq6 + 1;
+					} else {
+						sq6 = sq6 + 10;
+					}
+				}
+				function grid7(){
+					document.getElementById("seven").innerHTML = player;
+					document.getElementById("seven").style.pointerEvents = 'none';
+					if (player === 'X') {
+						sq7 = sq7 + 1;
+					} else {
+						sq7 = sq7 + 10;
+					}
+				}
+				function grid8(){
+					document.getElementById("eight").innerHTML = player;
+					document.getElementById("eight").style.pointerEvents = 'none';
+					if (player === 'X') {
+						sq8 = sq8 + 1;
+					} else {
+						sq8 = sq8 + 10;
+					}
+				}
+				function grid9(){
+					document.getElementById("nine").innerHTML = player;
+					document.getElementById("nine").style.pointerEvents = 'none';
+					if (player === 'X') {
+						sq9 = sq9 + 1;
+					} else {
+						sq9 = sq9 + 10;
+					}
+				}
+
+				function checkWinner(){ // Rows & columns in their initial states are not numbers. The below converts them from NaN to 0
+					var topRow = topRow ? topRow : sq1 + sq2 + sq3;
+					var midRow = midRow ? midRow : sq4 + sq5 + sq6;
+					var botRow = botRow ? botRow : sq7 + sq8 + sq9;
+					var lCol = lCol ? lCol : sq1 + sq4 + sq7;
+					var mCol = mCol ? mCol : sq2 + sq5 + sq8
+					var rCol = rCol ? rCol : sq3 + sq6 + sq9
+					var lDiag = lDiag ? lDiag : sq1 + sq5 + sq9
+					var rDiag = rDiag ? rDiag : sq3 + sq5 + sq7
+					var gameOver = gameOver ? gameOver : sq1 + sq2 + sq3 + sq4 + sq5 + sq6 + sq7 + sq8 + sq9;
+					// X's value is 3, O's is 10
+					if (topRow === 3 || topRow === 30) {
+						document.getElementById('one').style.backgroundColor = 'chartreuse'
+						document.getElementById('two').style.backgroundColor = 'chartreuse'
+						document.getElementById('three').style.backgroundColor = 'chartreuse'
+						for (i=0; i<9; i++){
+						document.getElementsByClassName(`grid-item`)[i].style.pointerEvents = "none";
+						}
+					}
+					else if (midRow === 3 || midRow === 30) {
+						document.getElementById('four').style.backgroundColor = 'chartreuse'
+						document.getElementById('five').style.backgroundColor = 'chartreuse'
+						document.getElementById('six').style.backgroundColor = 'chartreuse'
+						for (i=0; i<9; i++){
+						document.getElementsByClassName(`grid-item`)[i].style.pointerEvents = "none";
+						}
+					}
+					else if (botRow === 3 || botRow === 30) {
+						document.getElementById('seven').style.backgroundColor = 'chartreuse'
+						document.getElementById('eight').style.backgroundColor = 'chartreuse'
+						document.getElementById('nine').style.backgroundColor = 'chartreuse'
+						for (i=0; i<9; i++){
+						document.getElementsByClassName(`grid-item`)[i].style.pointerEvents = "none";
+						}
+					}
+					else if (lCol === 3 || lCol === 30) {
+						document.getElementById('one').style.backgroundColor = 'chartreuse'
+						document.getElementById('four').style.backgroundColor = 'chartreuse'
+						document.getElementById('seven').style.backgroundColor = 'chartreuse'
+						for (i=0; i<9; i++){
+						document.getElementsByClassName(`grid-item`)[i].style.pointerEvents = "none";
+						}
+					}
+					else if (mCol === 3 || mCol === 30) {
+						document.getElementById('two').style.backgroundColor = 'chartreuse'
+						document.getElementById('five').style.backgroundColor = 'chartreuse'
+						document.getElementById('eight').style.backgroundColor = 'chartreuse'
+						for (i=0; i<9; i++){
+						document.getElementsByClassName(`grid-item`)[i].style.pointerEvents = "none";
+						}
+					}
+					else if (rCol === 3 || rCol === 30) {
+						document.getElementById('three').style.backgroundColor = 'chartreuse'
+						document.getElementById('six').style.backgroundColor = 'chartreuse'
+						document.getElementById('nine').style.backgroundColor = 'chartreuse'
+						for (i=0; i<9; i++){
+						document.getElementsByClassName(`grid-item`)[i].style.pointerEvents = "none";
+						}
+					}
+					else if (lDiag === 3 || lDiag === 30) {
+						document.getElementById('one').style.backgroundColor = 'chartreuse'
+						document.getElementById('five').style.backgroundColor = 'chartreuse'
+						document.getElementById('nine').style.backgroundColor = 'chartreuse'
+						for (i=0; i<9; i++){
+						document.getElementsByClassName(`grid-item`)[i].style.pointerEvents = "none";
+						}
+					}
+					else if (rDiag === 3 || rDiag === 30) {
+						document.getElementById('three').style.backgroundColor = 'chartreuse'
+						document.getElementById('five').style.backgroundColor = 'chartreuse'
+						document.getElementById('seven').style.backgroundColor = 'chartreuse'
+						for (i=0; i<9; i++){
+						document.getElementsByClassName(`grid-item`)[i].style.pointerEvents = "none";
+						}
+					}
+					else if (gameOver === 45 || gameOver === 54) {
+						for (i=0; i<9; i++){
+						document.getElementsByClassName(`grid-item`)[i].style.pointerEvents = "none";
+						document.getElementsByClassName(`grid-item`)[i].style.backgroundColor = "red";
+						}
+					}
+					else {
+						console.log(`New turn, no winner yet.`)
+						console.log(`Top row = ${topRow}`)
+						console.log(`Mid row = ${midRow}`)
+						console.log(`Bot row = ${botRow}`)
+						console.log(`L column = ${lCol}`)
+						console.log(`M column = ${mCol}`)
+						console.log(`R column = ${rCol}`)
+						console.log(`Left to right diag = ${lDiag}`)
+						console.log(`Right to left diag = ${rDiag}`)
+						console.log(`GO = ${gameOver}`)
+					}
+				}
+				
+			  </script>
+		</main>
+	</body>
+</html>
